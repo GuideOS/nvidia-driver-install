@@ -6,7 +6,7 @@ if ! command -v sudo &>/dev/null; then
     exit 1
 fi
 # Repository um contrib und non-free erweitern
-echo "Füge Standardrepositories die Zweige 'contrib' und 'non-free' hinzu...
+echo "Füge Standardrepositories die Zweige 'contrib' und 'non-free' hinzu..."
 sudo apt-add-repository contrib non-free -y >/dev/null 2>&1
 
 # Backports aktivieren
