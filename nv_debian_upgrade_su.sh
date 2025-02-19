@@ -49,8 +49,8 @@ sleep 2
 clear
 echo "== DRIVERAUSWAHL =="
 echo "Welche Nvidia-Treiber möchtest du installieren?"
-echo "1) Offener Treiber (nvidia-open) -- weniger kompatibel"
-echo "2) Proprietärer Treiber mit CUDA (nvidia-driver) -- beste Leistung"
+echo "1) Offener Treiber (nvidia-open)"
+echo "2) Proprietärer Treiber mit CUDA (nvidia-driver)"
 echo "3) Abbrechen"
 
 read -p "Bitte wähle eine Option (1/2/3): " choice
