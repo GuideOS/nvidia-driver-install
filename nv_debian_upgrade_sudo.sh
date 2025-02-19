@@ -61,10 +61,12 @@ case $choice in
     1)
         echo "Installiere den offenen Nvidia-Treiber..."
         sudo apt install -y nvidia-open >/dev/null 2>&1
+        echo "Bitte System neu starten..."
         ;;
     2)
         echo "Installiere den proprietären Nvidia-Treiber mit CUDA..."
         sudo apt install -y nvidia-driver >/dev/null 2>&1
+        echo "Bitte System neu starten..."
         ;;
     3)
         echo "Installation abgebrochen." 
@@ -73,3 +75,5 @@ case $choice in
     *)
         echo "Ungültige Eingabe. Bitte wähle 1, 2 oder 3."
         exit 1
+        ;;
+esac
