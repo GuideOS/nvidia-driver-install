@@ -4,7 +4,7 @@ echo "==TGGs Debian 12 NVIDIA INSTALLER=="
 echo "Führe Installation unter Verwendung von 'su -' als Rootuser aus!"
 echo "Sofern kein Rootuser angelegt ist, bitte Script 'nv_debian_upgrade_sudo.sh' verwenden!"
 # Repository um contrib und non-free erweitern
-echo "Füge Standardrepositories die Zweige 'contrib' und 'non-free' hinzu...
+echo "Füge Standardrepositories die Zweige 'contrib' und 'non-free' hinzu..."
 apt-add-repository contrib non-free -y >/dev/null 2>&1
 
 # Backports aktivieren
