@@ -50,7 +50,7 @@ clear
 echo "== DRIVERAUSWAHL =="
 echo "Welche Nvidia-Treiber möchtest du installieren?"
 echo "1) Offener Treiber (nvidia-open)"
-echo "2) Proprietärer Treiber mit CUDA (nvidia-driver)"
+echo "2) Proprietärer Treiber mit CUDA (cuda-drivers)"
 echo "3) Abbrechen"
 
 read -p "Bitte wähle eine Option (1/2/3): " choice
@@ -63,7 +63,7 @@ case $choice in
         ;;
     2)
         echo "Installiere den proprietären Nvidia-Treiber mit CUDA..."
-        apt install -y nvidia-driver >/dev/null 2>&1
+        apt install -y cuda-driver >/dev/null 2>&1
         echo "Bitte System neu starten..."
         ;;
     3)
