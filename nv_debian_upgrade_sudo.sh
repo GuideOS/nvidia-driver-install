@@ -64,8 +64,8 @@ case $choice in
         echo "Bitte System neu starten..."
         ;;
     2)
-        echo "Installiere den proprietären Nvidia-Treiber mit CUDA..."
-        sudo apt install -y nvidia-driver >/dev/null 2>&1
+        echo "Installiere den proprietären Nvidia-Cuda-Treiber..."
+        sudo apt install -y cuda-driver >/dev/null 2>&1
         echo "Bitte System neu starten..."
         ;;
     3)
