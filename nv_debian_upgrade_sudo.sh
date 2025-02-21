@@ -31,7 +31,8 @@ sudo apt update
 clear
 echo "Installiere aktuelles Backportskernel & Header, DKMS und Firmware-nonfree..."
 sleep 2
-sudo apt install -y linux-image-6.12.9+bpo-amd64 linux-headers-6.12.9+bpo-amd64 dkms firmware-misc-nonfree firmware-linux-nonfree
+sudo apt install -t bookworm-backports -y linux-image-amd64 linux-headers-amd64
+sudo apt install -y dkms firmware-misc-nonfree firmware-linux-nonfree
 
 clear
 echo "Hole NVIDIA Keyring von NVIDIA-Server..."
