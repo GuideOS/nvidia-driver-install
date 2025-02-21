@@ -24,9 +24,9 @@ fi
 # System aktualisieren und Kernel installieren
 echo "Aktualisiere Paketquellen..."
 apt update
-echo "Installiere aktuelles Backportskernel & Header, DKMS und Firmware-nonfree..."
-apt install -y linux-image-6.12.9+bpo-amd64 linux-headers-6.12.9+bpo-amd64 dkms firmware-misc-nonfree firmware-linux-nonfree
-
+echo "Installiere aktuellstes Backportskernel & Header, DKMS und Firmware-nonfree..."
+apt install -t bookworm-backports -y linux-image-amd64 linux-headers-amd64
+apt install -y dkms firmware-misc-nonfree firmware-linux-nonfree
 clear
 echo "Hole NVIDIA Keyring von NVIDIA-Server..."
 # Nvidia Keyring holen
