@@ -8,7 +8,7 @@ fi
 # Repository um contrib und non-free erweitern
 echo "Füge Standardrepositories die Zweige 'contrib' und 'non-free' hinzu..."
 sleep 2
-sudo apt update && apt install software-properties-common -y
+sudo apt update && sudo apt install software-properties-common -y
 sudo apt-add-repository contrib non-free -y
 
 # Backports aktivieren
