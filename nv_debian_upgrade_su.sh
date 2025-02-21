@@ -3,12 +3,14 @@ clear
 echo "==TGGs Debian 12 NVIDIA INSTALLER=="
 echo "Führe Installation unter Verwendung von 'su -' als Rootuser aus!"
 echo "Sofern kein Rootuser angelegt ist, bitte Script 'nv_debian_upgrade_sudo.sh' verwenden!"
+sleep 2
 # Repository um contrib und non-free erweitern
 echo "Füge Standardrepositories die Zweige 'contrib' und 'non-free' hinzu..."
 apt-add-repository contrib non-free -y
 
 # Backports aktivieren
 echo "Aktiviere Bookworm-Backports..."
+sleep 2
 REPO="deb http://deb.debian.org/debian bookworm-backports main contrib non-free non-free-firmware"
 SOURCE_FILE="/etc/apt/sources.list"
 
@@ -21,7 +23,10 @@ fi
 
 # System aktualisieren und Kernel installieren
 echo "Aktualisiere Paketquellen..."
+sleep 2
 apt update
+clear
+sleep 2
 echo "Installiere aktuelles Backportskernel & Header, DKMS und Firmware-nonfree..."
 apt install -y linux-image-6.12.9+bpo-amd64 linux-headers-6.12.9+bpo-amd64 dkms firmware-misc-nonfree firmware-linux-nonfree
 
