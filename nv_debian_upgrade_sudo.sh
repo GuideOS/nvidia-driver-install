@@ -66,12 +66,10 @@ case $choice in
     1)
         echo "Installiere den offenen Nvidia-Treiber..."
         sudo apt install -y nvidia-open
-        echo "Bitte System neu starten..."
         ;;
     2)
         echo "Installiere den proprietären Nvidia-Cuda-Treiber..."
         sudo apt install -y cuda-drivers
-        echo "Bitte System neu starten..."
         ;;
     3)
         echo "Installation abgebrochen."
@@ -82,3 +80,15 @@ case $choice in
         exit 1
         ;;
 esac
+
+# Backports-Priorität setzen
+clear
+echo "Erstelle /etc/apt/preferences.d/backports mit Pin-Priority 499..."
+echo "Package: *
+Pin: release o=Debian Backports,a=stable-backports,n=bookworm-backports
+Pin-Priority: 499" | tee /etc/apt/preferences.d/backports
+sleep 2
+clear
+echo "Starte System neu..."
+sleep 2
+reboot
