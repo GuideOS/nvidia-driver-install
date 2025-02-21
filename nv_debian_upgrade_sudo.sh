@@ -87,7 +87,7 @@ clear
 echo "Erstelle /etc/apt/preferences.d/backports mit Pin-Priority 499..."
 echo "Package: *
 Pin: release o=Debian Backports,a=stable-backports,n=bookworm-backports
-Pin-Priority: 499" | tee /etc/apt/preferences.d/backports
+Pin-Priority: 499" | sudo tee /etc/apt/preferences.d/backports
 sleep 2
 clear
 echo "Starte System neu..."
