@@ -70,7 +70,7 @@ case $choice in
         ;;
     2)
         echo "Installiere den proprietären Nvidia-Cuda-Treiber..."
-        sudo apt install -y cuda-driver
+        sudo apt install -y cuda-drivers
         echo "Bitte System neu starten..."
         ;;
     3)
