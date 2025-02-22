@@ -1,7 +1,13 @@
 These bash-scripts are intended to be used with Debian Bookworm and a NVIDIA-GPU.
-
 Please only use this script when you are using a NVIDIA-GPU.
 You need to uninstall previous installed NVIDIA-DRIVERS.
+
+Content:
+nv_debian_upgrade_su.sh -> Script with german texts (echos)
+nv_debian_upgrade_su_eng.sh -> Script with english texts (echos)
+nv_debian_upgrade_sudo.sh -> Script with german texts (echos)
+nv_debian_upgrade_sudo_eng.sh ->Script with english texts (echos)
+
 
 The script itself is doing the following:
 Adds contrib and non-free to your sources.list
