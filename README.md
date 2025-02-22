@@ -1,34 +1,36 @@
-These bash-scripts are intended to be used with Debian Bookworm and a NVIDIA-GPU.
-Please only use this script when you are using a NVIDIA-GPU.
-You need to uninstall previous installed NVIDIA-DRIVERS.
+# NVIDIA-Driver Setup for Debian Bookworm
 
-Content:
-nv_debian_upgrade_su.sh -> Script with german texts (echos)
-nv_debian_upgrade_su_eng.sh -> Script with english texts (echos)
-nv_debian_upgrade_sudo.sh -> Script with german texts (echos)
-nv_debian_upgrade_sudo_eng.sh ->Script with english texts (echos)
+These bash scripts are intended for use with **Debian Bookworm** and an **NVIDIA GPU**.
+Please only use these scripts if you are using an NVIDIA GPU.
 
+> **Important:** You need to uninstall any previously installed NVIDIA drivers before using these scripts.
 
-The script itself is doing the following:
-Adds contrib and non-free to your sources.list
-Adds the Backports-Repository (bookworm-backports)
-Then installs the latest backports-kernel and kernel-headers & DKMS & firmware-nonfree
+## Scripts Overview
 
-After that the NVIDIA-Keyring is pulled and installed
-The NVIDIA Debian 12 Repository is added in /etc/apt/sources.list.d/
+- **nv_debian_upgrade_su.sh**: Script with German texts (echoes).
+- **nv_debian_upgrade_su_eng.sh**: Script with English texts (echoes).
+- **nv_debian_upgrade_sudo.sh**: Script with German texts (echoes).
+- **nv_debian_upgrade_sudo_eng.sh**: Script with English texts (echoes).
 
-Finally you are asked, which driver you want to install: NVIDIA-OPEN or CUDA-DRIVERs (closed source)
+## Script Functionality
 
-Please use at your own risk! 
+The script performs the following tasks:
 
-Best case is: You have a  fresh install of Debian 12 got a NVIDIA-GPU (which is not working properly - no boot to DE) and would like to install a more modern driver.
+1. Adds `contrib` and `non-free` repositories to your `sources.list`.
+2. Adds the **Backports Repository** (`bookworm-backports`).
+3. Installs the latest backports kernel, kernel headers, DKMS, and firmware non-free.
+4. Pulls and installs the **NVIDIA Keyring**.
+5. Adds the **NVIDIA Debian 12 Repository** to `/etc/apt/sources.list.d/`.
+6. Prompts you to choose between installing either the **NVIDIA Open Driver** or the **CUDA Drivers** (closed-source).
 
-After Pulling the Repo, you need to make the scripts executeable with: 
+## Usage
 
-chmod +x <scriptname.sh>
+**Please use at your own risk!**
 
-Use the sudo version, if you have installed Debian 12 with sudo.
+The best use case is for a fresh installation of **Debian 12** with an **NVIDIA GPU** (which is not working properly, e.g., no boot to the desktop environment), and you want to install a more modern driver.
 
-Use the su version, if you are using a regular root-user-account without sudo.
+### Steps
 
-Note: It seems like it is also working with Linux Mint Debian Edition.
+1. After pulling the repository, you need to make the scripts executable:
+   ```bash
+   chmod +x <scriptname.sh>
