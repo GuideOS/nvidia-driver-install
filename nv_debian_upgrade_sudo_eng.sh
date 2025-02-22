@@ -2,7 +2,7 @@
 clear
 echo "==TGGs Debian 12 NVIDIA INSTALLER=="
 if ! command -v sudo &>/dev/null; then
-    echo "sudo is not installed. Please use the script nv_debian_upgrade_su.sh."
+    echo "sudo is not installed. Please use the script nv_debian_upgrade_su_eng.sh."
     exit 1
 fi
 # Add contrib and non-free to the repository
