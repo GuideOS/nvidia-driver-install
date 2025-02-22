@@ -31,6 +31,8 @@ The best use case is for a fresh installation of **Debian 12** with an **NVIDIA 
 
 ### Steps
 
-1. After pulling the repository, you need to make the scripts executable:
+After pulling the repository, you need to make the scripts executable and you have to be in the directory of the pulled scripts on your machine:
    ```bash
    chmod +x <scriptname.sh>
+   ```bash
+   ./scriptname.sh
