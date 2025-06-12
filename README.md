@@ -5,13 +5,6 @@ Please only use these scripts if you are using an NVIDIA GPU.
 
 > **Important:** You need to uninstall any previously installed NVIDIA drivers before using these scripts.
 
-## Scripts Overview
-
-- **nv_debian_upgrade_su.sh**: Script with German texts (echoes).
-- **nv_debian_upgrade_su_eng.sh**: Script with English texts (echoes).
-- **nv_debian_upgrade_sudo.sh**: Script with German texts (echoes).
-- **nv_debian_upgrade_sudo_eng.sh**: Script with English texts (echoes).
-
 ## Script Functionality
 
 The script performs the following tasks:
@@ -29,12 +22,27 @@ The script performs the following tasks:
 
 The best use case is for a fresh installation of **Debian 12** with an **NVIDIA GPU** (which is not working properly, e.g., no boot to the desktop environment), and you want to install a more modern driver.
 
-## Build
+## Build for OpenBuildService
 
 ```
 dpkg-source --build ./
 ```
+## Build Local
 
-### Steps
+```
+dpkg-buildpackage -us -uc
+```
+
+## Install
+
+```
+sudo apt install ./tgg-nvidia
+```
+
+## Usage
+
+```
+sudo tgg-nvidia
+```
 
 
