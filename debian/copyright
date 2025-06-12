@@ -1,9 +1,9 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: guideos-shutdown-tool
-Source: https://gitlab.pgos.net/project-guideos/primo-di-tutto
+Upstream-Name: nvidia_debian
+Source: https://github.com/TechGameGeek/nvidia_debian
 
 Files: *
-Copyright: 2024 Evilware666
+Copyright: 2025 TechGameGeek
 License: GPL-3
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
