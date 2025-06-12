@@ -1,4 +1,4 @@
-Source: tdd-nvidia
+Source: tgg-nvidia
 Section: misc
 Priority: optional
 Maintainer: Actionschnitzel <actionschnitzel@guideos.de>
@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 9),bash
 Standards-Version: 1.0
 Homepage: https://guideos.de
 
-Package: tdd-nvidia
+Package: tgg-nvidia
 Architecture: all
 Depends: ${misc:Depends}, bash
 Description: A script based installer for the nvidia driver.
