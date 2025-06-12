@@ -29,9 +29,12 @@ The script performs the following tasks:
 
 The best use case is for a fresh installation of **Debian 12** with an **NVIDIA GPU** (which is not working properly, e.g., no boot to the desktop environment), and you want to install a more modern driver.
 
+## Build
+
+```
+dpkg-source --build ./
+```
+
 ### Steps
 
-After pulling the repository, you need to make the scripts executable and you have to be in the directory of the pulled scripts on your machine:
-   ```bash
-   chmod +x <scriptname.sh>
-   ./scriptname.sh
+

@@ -1,0 +1,15 @@
+Source: tdd-nvidia
+Section: misc
+Priority: optional
+Maintainer: Actionschnitzel <actionschnitzel@guideos.de>
+Build-Depends: debhelper (>= 9),bash
+Standards-Version: 1.0
+Homepage: https://guideos.de
+
+Package: tdd-nvidia
+Architecture: all
+Depends: ${misc:Depends}, bash
+Description: A script based installer for the nvidia driver.
+ This script will install the nvidia driver and the nvidia settings tool.
+ It implements the cuda repiository and install.
+ 

@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+
+PACKAGE := tdd-nvidia
+
+%:
+	dh $@
+
+override_dh_install:
+	# Erstellen der notwendigen Verzeichnisse und Kopieren der Dateien
+	install -d debian/$(PACKAGE)/usr/bin/
+	install -d debian/$(PACKAGE)/etc/
+	install -d debian/$(PACKAGE)/usr/share/doc/$(PACKAGE)
+	install -m 644 LICENSE debian/$(PACKAGE)/usr/share/doc/$(PACKAGE)/LICENSE
+	install -m 755 tdd-nvidia debian/$(PACKAGE)/usr/bin/
+
+
+	dh_install
