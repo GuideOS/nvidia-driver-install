@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "==TGGs Debian 12 NVIDIA INSTALLER=="
+echo "==TGGs Debian 12 NVIDIA INSTALLER== + No BPO @Actionschnitzel"
 if ! command -v sudo &>/dev/null; then
     echo "sudo ist nicht installiert. Bitte das Script nv_debian_upgrade_su.sh verwenden."
     exit 1
@@ -11,28 +11,14 @@ sleep 2
 sudo apt update && sudo apt install software-properties-common -y
 sudo apt-add-repository contrib non-free -y
 
-# Backports aktivieren
-echo "Aktiviere Bookworm-Backports..."
-sleep 2
-REPO="deb http://deb.debian.org/debian bookworm-backports main contrib non-free non-free-firmware"
-SOURCE_FILE="/etc/apt/sources.list"
-
-if grep -qF "$REPO" "$SOURCE_FILE" || grep -qF "$REPO" /etc/apt/sources.list.d/*.list; then
-    echo "Das Repository ist bereits eingetragen. Überspringe diesen Schritt..."
-else
-    echo "Das Repository ist nicht eingetragen. Es wird hinzugefügt..."
-    echo "$REPO" | sudo tee -a "$SOURCE_FILE"
-fi
-
-# System aktualisieren und Kernel installieren
+# System aktualisieren
 echo "Aktualisiere Paketquellen..."
 sleep 2
 sudo apt update
 clear
-echo "Installiere aktuelles Backportskernel & Header, DKMS und Firmware-nonfree..."
+echo "Installiere Kernel-Header, DKMS und Firmware-nonfree..."
 sleep 2
-sudo apt install -t bookworm-backports -y linux-image-amd64 linux-headers-amd64
-sudo apt install -y dkms firmware-misc-nonfree firmware-linux-nonfree
+sudo apt install -y linux-headers-amd64 dkms firmware-misc-nonfree firmware-linux-nonfree
 
 clear
 echo "Hole NVIDIA Keyring von NVIDIA-Server..."
@@ -83,14 +69,6 @@ case $choice in
         ;;
 esac
 
-# Backports-Priorität setzen
 clear
-echo "Erstelle /etc/apt/preferences.d/backports mit Pin-Priority 499..."
-echo "Package: *
-Pin: release o=Debian Backports,a=stable-backports,n=bookworm-backports
-Pin-Priority: 499" | sudo tee /etc/apt/preferences.d/backports
-sleep 2
-clear
-echo "Starte System neu..."
-sleep 2
-sudo reboot
+echo "Es epfiehlt sich, das System neu zu starten, um die Änderungen zu übernehmen."
+
