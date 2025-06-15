@@ -3,6 +3,8 @@
 These bash scripts are intended for use with **Debian Bookworm** and an **NVIDIA GPU**.
 Please only use these scripts if you are using an NVIDIA GPU.
 
+![Bild](https://github.com/GuideOS/nvidia-driver-install/blob/main/screenshot.png?raw=true)
+
 > **Important:** You need to uninstall any previously installed NVIDIA drivers before using these scripts.
 
 ## Script Functionality
