@@ -10,11 +10,10 @@ Please only use these scripts if you are using an NVIDIA GPU.
 The script performs the following tasks:
 
 1. Adds `contrib` and `non-free` repositories to your `sources.list`.
-2. Adds the **Backports Repository** (`bookworm-backports`).
-3. Installs the latest backports kernel, kernel headers, DKMS, and firmware non-free.
-4. Pulls and installs the **NVIDIA Keyring**.
-5. Adds the **NVIDIA Debian 12 Repository** to `/etc/apt/sources.list.d/`.
-6. Prompts you to choose between installing either the **NVIDIA Open Driver** or the **CUDA Drivers** (closed-source).
+2. Installs the latest kernel, kernel headers, DKMS, and firmware non-free.
+3. Pulls and installs the **NVIDIA Keyring**.
+4. Adds the **NVIDIA Debian 12 Repository** to `/etc/apt/sources.list.d/`.
+5. Prompts you to choose between installing either the **NVIDIA Open Driver** or the **CUDA Drivers** (closed-source).
 
 ## Usage
 
