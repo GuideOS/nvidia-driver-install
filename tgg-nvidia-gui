@@ -1,0 +1,96 @@
+#!/bin/bash
+
+# Passwort abfragen
+PASSWORD=$(zenity --password --title="Authentifizierung erforderlich")
+if [ -z "$PASSWORD" ]; then
+    zenity --error --text="Kein Passwort eingegeben. Abbruch."
+    exit 1
+fi
+
+# Funktion: Ist NVIDIA-Treiber installiert?
+is_treiber_installiert() {
+    dpkg -s cuda-drivers &>/dev/null || dpkg -s nvidia-open &>/dev/null
+}
+
+# Wenn Treiber installiert → Deinstallationsmenü
+if is_treiber_installiert; then
+    MENU_CHOICE=$(zenity --list --title="NVIDIA-Treiber erkannt" \
+        --text="Ein NVIDIA-Treiber ist installiert.\nWas möchtest du tun?" \
+        --radiolist --column "Ausgewählt" --column "Aktion" \
+        TRUE "Deinstallieren" FALSE "Abbrechen")
+
+    if [ "$MENU_CHOICE" = "Deinstallieren" ]; then
+        (
+        echo "10"; echo "# Deinstallation läuft..."
+        if dpkg -s cuda-drivers &>/dev/null; then
+            echo "$PASSWORD" | sudo -S apt remove --purge -y cuda-drivers &>/dev/null
+        fi
+        if dpkg -s nvidia-open &>/dev/null; then
+            echo "$PASSWORD" | sudo -S apt remove --purge -y nvidia-open &>/dev/null
+        fi
+        echo "$PASSWORD" | sudo -S apt autoremove -y &>/dev/null
+        echo "100"; echo "# Deinstallation abgeschlossen"
+        ) | zenity --progress --title="Deinstallieren..." --auto-close --percentage=0
+        zenity --info --text="Deinstallation abgeschlossen."
+        exit 0
+    else
+        zenity --info --text="Vorgang abgebrochen."
+        exit 0
+    fi
+fi
+
+# Installationsmenü anzeigen
+CHOICE=$(zenity --list --title="NVIDIA-Treiber installieren" \
+  --text="Wähle den zu installierenden Treiber:" \
+  --radiolist \
+  --column="Ausgewählt" --column="Option" \
+  TRUE "Offener Treiber (nvidia-open)" \
+  FALSE "Proprietärer Treiber (cuda-drivers)" \
+  FALSE "Abbrechen")
+
+# Abbruch prüfen
+if [[ "$CHOICE" == "Abbrechen" || -z "$CHOICE" ]]; then
+    zenity --info --text="Keine Auswahl getroffen. Abbruch."
+    exit 0
+fi
+
+# Treiber-Installation
+(
+echo "10"; echo "# Aktualisiere Paketquellen..."
+echo "$PASSWORD" | sudo -S apt update -y &>/dev/null
+echo "$PASSWORD" | sudo -S apt install -y software-properties-common &>/dev/null
+echo "$PASSWORD" | sudo -S add-apt-repository contrib non-free -y &>/dev/null
+echo "$PASSWORD" | sudo -S apt update -y &>/dev/null
+
+echo "30"; echo "# Installiere Kernel-Header und Firmware..."
+echo "$PASSWORD" | sudo -S apt install -y linux-headers-amd64 dkms firmware-misc-nonfree firmware-linux-nonfree &>/dev/null
+
+echo "50"; echo "# Lade NVIDIA-Keyring herunter..."
+wget -q -O /tmp/cuda-keyring.deb https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
+echo "$PASSWORD" | sudo -S dpkg -i /tmp/cuda-keyring.deb &>/dev/null
+rm -f /tmp/cuda-keyring.deb
+
+echo "$PASSWORD" | sudo -S apt update -y &>/dev/null
+echo "$PASSWORD" | sudo -S apt -f install -y &>/dev/null
+
+echo "70"; echo "# Füge NVIDIA-Repo zur sources.list hinzu..."
+echo "deb [signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /" \
+    | echo "$PASSWORD" | sudo -S tee /etc/apt/sources.list.d/cuda-debian12-x86_64.list &>/dev/null
+
+echo "$PASSWORD" | sudo -S apt update -y &>/dev/null
+
+echo "90"; echo "# Installiere gewählten Treiber..."
+if [[ "$CHOICE" == *"nvidia-open"* ]]; then
+    echo "$PASSWORD" | sudo -S apt install -y nvidia-open &>/dev/null
+else
+    echo "$PASSWORD" | sudo -S apt install -y cuda-drivers &>/dev/null
+fi
+
+echo "100"; echo "# Installation abgeschlossen."
+) | zenity --progress --title="Installation läuft" --percentage=0 --auto-close
+
+# Neustartvorschlag nur nach erfolgreicher Installation
+zenity --question --title="Neustart erforderlich" --text="Installation abgeschlossen.\nJetzt neu starten?"
+if [ $? -eq 0 ]; then
+    echo "$PASSWORD" | sudo -S reboot
+fi
